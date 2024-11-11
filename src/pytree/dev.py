@@ -20,7 +20,7 @@ class Node:
     def __repr__(self) -> str:
         return f"Node({self.value})"
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash(self.value)
 
 
@@ -36,7 +36,7 @@ class Graph:
             self.first_node = self.nodes[value]
         return self.nodes[value]
 
-    def add_edge(self, from_value: str, to_value: str):
+    def add_edge(self, from_value: str, to_value: str) -> None:
         from_node = self.add_node(from_value)
         to_node = self.add_node(to_value)
         from_node.add_edge(to_node)
@@ -47,12 +47,12 @@ class Graph:
         return self._first_node
 
     @first_node.setter
-    def first_node(self, node: Node):
+    def first_node(self, node: Node) -> None:
         self._first_node = node
 
     def display_tree(
         self, start_value: str = None, visited: set[Node] = set(), prefix: str = ""
-    ) -> Generator:
+    ) -> Generator[str] | None:
         current_node = self.nodes.get(start_value)
 
         # Avoid recursion in case of cycles in graph
